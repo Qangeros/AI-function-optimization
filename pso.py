@@ -17,15 +17,15 @@ mm = 1  # mm = 1 for maximalisation, mm = -1 for minimalisation
 
 # optional variables for the optimization
 num_of_particles = 100
-num_of_generations = 100
+num_of_generations = 200
 w = 0.75  # inertia constant
-c1 = 1.5  # cognitive constant
-c2 = 1.5  # social constant
+c1 = 2  # cognitive constant
+c2 = 1  # social constant
 
 # VISUALISATION
-figure = plt.figure()
-ax = figure.add_subplot()
-figure.show()
+# figure = plt.figure()
+# ax = figure.add_subplot()
+# figure.show()
 
 ################################
 
@@ -42,7 +42,6 @@ class Particle:
         self.velocity = []  # velocity of the particle
         self.local_best_position = []  # best position of the particle
         self.local_best_fitness = initial_fitness
-        self.position.fitness = initial_fitness  # best fitness of the particle
 
         # initialise position and velocity of the particle
         for i in range(num_of_variables):
@@ -109,12 +108,10 @@ for i in range(num_of_generations):
 
     A.append(global_best_fitness)
 
-    ax.plot(A)
-    figure.canvas.draw()
-    ax.set_xlim(0, num_of_generations)
+    # ax.plot(A, color='r')
+    # figure.canvas.draw()
+    # ax.set_xlim(left=max(0, i - num_of_generations), right=i +1)
 
 print("Generation: ", i, "\nBest fitness: ", global_best_fitness)
 print("Best position: ", global_best_position)
 plt.show()
-
-

@@ -1,8 +1,6 @@
 import numpy as np
 
-
 def eggholder(x1, x2):
-    print("Eggholder")
     a = np.sqrt(np.fabs(x2 + x1 / 2 + 47))
     b = np.sqrt(np.fabs(x1 - (x2 + 47)))
     return -(x2 + 47) * np.sin(a) - x1 * np.sin(b)
