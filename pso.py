@@ -17,7 +17,7 @@ mm = 1  # mm = 1 for maximalisation, mm = -1 for minimalisation
 
 # optional variables for the optimization
 num_of_particles = 100
-num_of_generations = 200
+num_of_generations = 225
 w = 0.75  # inertia constant
 c1 = 2  # cognitive constant
 c2 = 1  # social constant
@@ -38,6 +38,7 @@ if mm == -1:
 
 class Particle:
     def __init__(self, bounds):
+        self.fitness = None
         self.position = []  # position of the particle
         self.velocity = []  # velocity of the particle
         self.local_best_position = []  # best position of the particle
@@ -114,4 +115,5 @@ for i in range(num_of_generations):
 
 print("Generation: ", i, "\nBest fitness: ", global_best_fitness)
 print("Best position: ", global_best_position)
+plt.plot(A, 'o-r')
 plt.show()

@@ -1,6 +1,7 @@
 import random
 import numpy as np
 import functions as f
+import matplotlib.pyplot as plt
 
 def fitness(x, y):
     ans = f.eggholder(x, y)
@@ -44,3 +45,6 @@ for i in range(10000):
         newGen.append((e1, e2))
 
     solutions = newGen
+plt.plot(newGen, '. r')
+plt.show()
+
