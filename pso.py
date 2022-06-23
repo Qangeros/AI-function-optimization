@@ -17,9 +17,9 @@ mm = 1  # mm = 1 for maximalisation, mm = -1 for minimalisation
 
 # optional variables for the optimization
 num_of_particles = 100
-num_of_generations = 225
+num_of_generations = 200
 w = 0.75  # inertia constant
-c1 = 2  # cognitive constant
+c1 = 12  # cognitive constant
 c2 = 1  # social constant
 
 # VISUALISATION
@@ -113,7 +113,8 @@ for i in range(num_of_generations):
     # figure.canvas.draw()
     # ax.set_xlim(left=max(0, i - num_of_generations), right=i +1)
 
-print("Generation: ", i, "\nBest fitness: ", global_best_fitness)
+print("Generation: ", i + 1)
+print("Best fitness: ", global_best_fitness)
 print("Best position: ", global_best_position)
-plt.plot(A, 'o-r')
+plt.plot(A, 'o:r')
 plt.show()

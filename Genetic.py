@@ -3,13 +3,14 @@ import numpy as np
 import functions as f
 import matplotlib.pyplot as plt
 
+
 def fitness(x, y):
     ans = f.eggholder(x, y)
 
     if ans == 0:
         return 99999
     else:
-        return abs(1/ans)
+        return abs(1 / ans)
 
 
 solutions = []
@@ -24,10 +25,10 @@ for i in range(10000):
     rankedsolutions.sort()
     rankedsolutions.reverse()
 
-    print(f"=== Gen {i} best solutions=== ")
-    print(rankedsolutions[0])
+    # print(f"=== Gen {i} best solutions=== ")
+    # print(rankedsolutions[0])
 
-    if rankedsolutions[0][0] > 9999:
+    if rankedsolutions[0][0] > 500:
         break
 
     bestsolutions = rankedsolutions[:100]
@@ -45,6 +46,8 @@ for i in range(10000):
         newGen.append((e1, e2))
 
     solutions = newGen
+
+print(f"=== Gen {i} best solutions=== ")
+print(rankedsolutions[0])
 plt.plot(newGen, '. r')
 plt.show()
-
