@@ -4,6 +4,7 @@ import numpy as np
 import functions as f
 
 decision = input("Rastrigin (1) or Eggholder (2) ? ")
+#  Może doda się GUI
 
 
 # definition of a function to be optimized
