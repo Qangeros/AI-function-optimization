@@ -1,31 +1,36 @@
-import random
+import random as rand
 import matplotlib.pyplot as plt
 import numpy as np
+import functions as f
+
+decision = input("Rastrigin (1) or Eggholder (2) ? ")
 
 
 # definition of a function to be optimized
-def function(X):
-    A = 10
-    y = A * len(X) + sum([(x ** 2 - A * np.cos(2 * np.pi * x)) for x in X])
-    return y
+def function(x):
+    if decision == "1":
+        return f.rastrigin(x)
+    elif decision == "2":
+        return f.eggholder1(x)
+    # A = 10
+    # y = A * len(X) + sum([(x ** 2 - A * np.cos(2 * np.pi * x)) for x in X])
+    # return y
 
 
 # variables for the optimization
-bounds = [(-5.12, 5.12), (-5.12, 5.12)]  # bound of variables
+x_bound = 5.12
+y_bound = -x_bound
+
+bounds = [(y_bound, x_bound), (y_bound, x_bound)]  # bound of variables
 num_of_variables = 2
 mm = 1  # mm = 1 for maximalisation, mm = -1 for minimalisation
 
 # optional variables for the optimization
-num_of_particles = 100
-num_of_generations = 200
-w = 0.75  # inertia constant
-c1 = 12  # cognitive constant
+num_of_particles = 30
+num_of_generations = 30
+w = 0.5  # inertia constant
+c1 = 2  # cognitive constant
 c2 = 1  # social constant
-
-# VISUALISATION
-# figure = plt.figure()
-# ax = figure.add_subplot()
-# figure.show()
 
 ################################
 
@@ -33,7 +38,7 @@ if mm == 1:
     initial_fitness = -np.inf
 
 if mm == -1:
-    initial_fitness = np.inf  # TU MOZE BYC INACZEJ
+    initial_fitness = np.inf
 
 
 class Particle:
@@ -46,8 +51,8 @@ class Particle:
 
         # initialise position and velocity of the particle
         for i in range(num_of_variables):
-            self.position.append(random.uniform(bounds[i][0], bounds[i][1]))  # random initial position
-            self.velocity.append(random.uniform(bounds[i][0], bounds[i][1]))  # random initial velocity TU MOZE INACZEJ
+            self.position.append(rand.uniform(bounds[i][0], bounds[i][1]))  # random initial position
+            self.velocity.append(rand.uniform(bounds[i][0], bounds[i][1]))  # random initial velocity TU MOZE INACZEJ
 
     def evaluate(self, function):
         self.fitness = function(self.position)
@@ -70,15 +75,17 @@ class Particle:
 
     def velocity_update(self, global_best_position):
         for i in range(num_of_variables):
-            r1 = random.random()
-            r2 = random.random()
-            # TU MOZE INACZEJ
+            r1 = rand.random()
+            r2 = rand.random()
             self.velocity[i] = w * self.velocity[i] + c1 * r1 * \
                                (self.local_best_position[i] - self.position[i]) + c2 * r2 * \
                                (global_best_position[i] - self.position[i])
 
 
 ################################
+
+print("Number of particles: ", num_of_particles)
+print("Number of generations: ", num_of_generations)
 
 global_best_fitness = initial_fitness
 global_best_position = []
@@ -106,15 +113,18 @@ for i in range(num_of_generations):
         swarm[j].position_update(bounds)
         swarm[j].velocity_update(global_best_position)
 
-
     A.append(global_best_fitness)
+    if A[i] != A[i - 1]:
+        print("\nGeneration: ", i + 1)
+        print("Best fitness: ", global_best_fitness)
+        print("Best position: ", global_best_position)
+        print("Fitness diff: ", A[i] - A[i - 1])
+        # Probably to delete later
 
-    # ax.plot(A, color='r')
-    # figure.canvas.draw()
-    # ax.set_xlim(left=max(0, i - num_of_generations), right=i +1)
-
+print("\n#############################################")
 print("Generation: ", i + 1)
 print("Best fitness: ", global_best_fitness)
 print("Best position: ", global_best_position)
+
 plt.plot(A, 'o:r')
 plt.show()
