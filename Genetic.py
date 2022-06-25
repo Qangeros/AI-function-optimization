@@ -5,28 +5,28 @@ import matplotlib.pyplot as plt
 
 
 def fitness(x, y):
-    ans = f.eggholder(x, y)
+    ans = f.rastrigin1(x, y)
 
     if ans == 0:
-        return 99999
+        return 999999
     else:
         return abs(1 / ans)
 
 
 solutions = []
 for s in range(1000):
-    solutions.append((random.uniform(0, 10000),
-                      random.uniform(0, 10000)))
+    solutions.append((random.uniform(-5.12, 5.12),
+                      random.uniform(-5.12, 5.12)))
 
-for i in range(10000):
+for i in range(1000):
     rankedsolutions = []
     for s in solutions:
         rankedsolutions.append((fitness(s[0], s[1]), s))
     rankedsolutions.sort()
     rankedsolutions.reverse()
 
-    # print(f"=== Gen {i} best solutions=== ")
-    # print(rankedsolutions[0])
+    print(f"=== Gen {i} best solutions=== ")
+    print(rankedsolutions[0])
 
     if rankedsolutions[0][0] > 500:
         break

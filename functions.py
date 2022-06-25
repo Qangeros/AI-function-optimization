@@ -13,6 +13,11 @@ def rastrigin(X):
     return y
 
 
+def rastrigin1(*X, **kwargs):
+    A = kwargs.get('A', 10)
+    return A*len(X) + sum([(x**2 - A * np.cos(2 * np.pi * x)) for x in X])
+
+
 def eggholder1(X):
     x = X[0]
     y = X[1]
