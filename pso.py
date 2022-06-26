@@ -1,50 +1,97 @@
+from datetime import datetime
 import random as rand
 import matplotlib.pyplot as plt
 import numpy as np
 import functions as f
 
+now = datetime.now()
+now_formated = now.strftime("%d.%m.%Yr. %H.%M.%S")
+
+intro = '''                                                                                  
+d88888b db    db d8b   db  .o88b. d888888b d888888b  .d88b.  d8b   db    .d88b.  d8888b. d888888b d888888b .88b  d88.  .d8b.  db      d888888b d88888D  .d8b.  d888888b d888888b  .d88b.  d8b   db 
+88'     88    88 888o  88 d8P  Y8 `~~88~~'   `88'   .8P  Y8. 888o  88   .8P  Y8. 88  `8D `~~88~~'   `88'   88'YbdP`88 d8' `8b 88        `88'   YP  d8' d8' `8b `~~88~~'   `88'   .8P  Y8. 888o  88 
+88ooo   88    88 88V8o 88 8P         88       88    88    88 88V8o 88   88    88 88oodD'    88       88    88  88  88 88ooo88 88         88       d8'  88ooo88    88       88    88    88 88V8o 88 
+88~~~   88    88 88 V8o88 8b         88       88    88    88 88 V8o88   88    88 88~~~      88       88    88  88  88 88~~~88 88         88      d8'   88~~~88    88       88    88    88 88 V8o88 
+88      88b  d88 88  V888 Y8b  d8    88      .88.   `8b  d8' 88  V888   `8b  d8' 88         88      .88.   88  88  88 88   88 88booo.   .88.    d8' db 88   88    88      .88.   `8b  d8' 88  V888 
+YP      ~Y8888P' VP   V8P  `Y88P'    YP    Y888888P  `Y88P'  VP   V8P    `Y88P'  88         YP    Y888888P YP  YP  YP YP   YP Y88888P Y888888P d88888P YP   YP    YP    Y888888P  `Y88P'  VP   V8P                                          
+'''
+print(intro)
 decision = input("Rastrigin (1) or Eggholder (2) ? ")
 
 
 # definition of a function to be optimized
 def function(x):
     if decision == "1":
+        filename = f"{now_formated} - PSO - Rastrigin"
+        plt.title(filename)
         return f.rastrigin(x)
     elif decision == "2":
+        filename = f"{now_formated} - PSO - Eggholder"
+        plt.title(filename)
         return f.eggholder1(x)
-    # A = 10
-    # y = A * len(X) + sum([(x ** 2 - A * np.cos(2 * np.pi * x)) for x in X])
-    # return y
 
 
-b = input("Podaj wymiar(D - domyślny dla funkcji): ")
-if b == "D":
+print("\nSkip for a default value!")
+bound = input("Select bound of function: ")
+if bound == "":
     if decision == "1":
         x_bound = 5.12
     if decision == "2":
         x_bound = 512
 else:
-    x_bound = float(b)
+    x_bound = float(bound)
 y_bound = -x_bound
 
 bounds = [(y_bound, x_bound), (y_bound, x_bound)]  # bound of variables
 num_of_variables = 2
-mm = 1  # mm = 1 for maximalisation, mm = -1 for minimalisation
 
-# optional variables for the optimization
-num_of_particles = 30
-num_of_generations = 30
-w = 0.5  # inertia constant
-c1 = 2  # cognitive constant
-c2 = 1  # social constant
+mm = input("Minimalisation (-1) or maximalisation (1) (def. min.): ")
+if mm == "-1" or mm == "":
+    mm = int(-1)
+    initial_fitness = np.inf
 
-################################
-
-if mm == 1:
+elif mm == "1":
+    mm = int(1)
     initial_fitness = -np.inf
 
-if mm == -1:
+else:
+    print("Wrong value, default chosen (min.).")
+    nm = int(-1)  # mm = 1 for maximalisation, mm = -1 for minimalisation
     initial_fitness = np.inf
+
+# optional variables for the optimization
+
+num_of_particles = input("Number of particles (def. 30): ")
+if num_of_particles == "":
+    num_of_particles = int(30)
+else:
+    num_of_particles = int(num_of_particles)
+
+num_of_generations = input("Number of generation (def. 30): ")
+if num_of_generations == "":
+    num_of_generations = int(30)
+else:
+    num_of_generations = int(num_of_generations)
+
+w = input("Inertia constant W (def. 0.5): ")
+if w == "":
+    w = float(0.5)  # inertia constant
+else:
+    w = float(w)
+
+c1 = input("Cognitive constant C1 (def. 1.5): ")
+if c1 == "":
+    c1 = float(1.5)  # cognitive constant
+else:
+    c1 = float(c1)
+
+c2 = input("Social constant C2 (def. 1.5): ")
+if c2 == "":
+    c2 = float(1.5)  # social constant
+else:
+    c2 = float(c2)
+
+################################
 
 
 class Particle:
@@ -90,7 +137,7 @@ class Particle:
 
 ################################
 
-print("Number of particles: ", num_of_particles)
+print("\n\nNumber of particles: ", num_of_particles)
 print("Number of generations: ", num_of_generations)
 
 global_best_fitness = initial_fitness
@@ -133,4 +180,8 @@ print("Best fitness: ", global_best_fitness)
 print("Best position: ", global_best_position)
 
 plt.plot(A, 'o:r')
+plt.xlabel("Generation")
+plt.ylabel("Fitness")
+plt.grid()
+plt.savefig(f"charts/{now_formated}.png")
 plt.show()
