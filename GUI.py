@@ -3,7 +3,7 @@ import os
 
 if __name__ == "__main__":
     a = input("Wybierz algorytm(G - Genetyczny, P - PSO): ")
-    if a == "G":
+    if a == "G" or a == "g":
         os.system('python Genetic.py')
-    if a == "P":
+    if a == "P" or a == "p":
         os.system('python pso.py')
