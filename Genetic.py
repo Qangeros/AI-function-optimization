@@ -1,11 +1,15 @@
 import random
-import numpy as np
 import functions as f
 import matplotlib.pyplot as plt
 
+decision = input("Wybierz funkcję: Rastrigin (1) czy Eggholder (2) ? ")
+
 
 def fitness(x, y):
-    ans = f.rastrigin1(x, y)
+    if decision == "1":
+        ans = f.rastrigin1(x, y)
+    if decision == "2":
+        ans = f.eggholder(x, y)
 
     if ans == 0:
         return 999999
@@ -13,10 +17,21 @@ def fitness(x, y):
         return abs(1 / ans)
 
 
+bounds = input("Podaj wymiar(D - domyślny dla funkcji): ")
+if bounds == "D":
+    if decision == "1":
+        x_bound = 5.12
+    if decision == "2":
+        x_bound = 512
+else:
+    x_bound = float(bounds)
+
+y_bound = -x_bound
+
 solutions = []
 for s in range(1000):
-    solutions.append((random.uniform(-5.12, 5.12),
-                      random.uniform(-5.12, 5.12)))
+    solutions.append((random.uniform(y_bound, x_bound),
+                      random.uniform(y_bound, x_bound)))
 
 for i in range(1000):
     rankedsolutions = []

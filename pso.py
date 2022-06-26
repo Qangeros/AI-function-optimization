@@ -18,8 +18,14 @@ def function(x):
     # return y
 
 
-# variables for the optimization
-x_bound = 5.12
+bounds = input("Podaj wymiar(D - domyślny dla funkcji): ")
+if bounds == "D":
+    if decision == "1":
+        x_bound = 5.12
+    if decision == "2":
+        x_bound = 512
+else:
+    x_bound = float(bounds)
 y_bound = -x_bound
 
 bounds = [(y_bound, x_bound), (y_bound, x_bound)]  # bound of variables
