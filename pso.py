@@ -4,7 +4,6 @@ import numpy as np
 import functions as f
 
 decision = input("Rastrigin (1) or Eggholder (2) ? ")
-#  Może doda się GUI
 
 
 # definition of a function to be optimized
@@ -18,14 +17,14 @@ def function(x):
     # return y
 
 
-bounds = input("Podaj wymiar(D - domyślny dla funkcji): ")
-if bounds == "D":
+b = input("Podaj wymiar(D - domyślny dla funkcji): ")
+if b == "D":
     if decision == "1":
         x_bound = 5.12
     if decision == "2":
         x_bound = 512
 else:
-    x_bound = float(bounds)
+    x_bound = float(b)
 y_bound = -x_bound
 
 bounds = [(y_bound, x_bound), (y_bound, x_bound)]  # bound of variables
