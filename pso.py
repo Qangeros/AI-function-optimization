@@ -8,14 +8,13 @@ now = datetime.now()
 now_formated = now.strftime("%d.%m.%Yr. %H.%M.%S")
 
 intro = '''                                                                                  
- _______  _______  _______ 
-(  ____ )(  ____ \(  ___  )
-| (    )|| (    \/| (   ) |
-| (____)|| (_____ | |   | |
-|  _____)(_____  )| |   | |
-| (            ) || |   | |
-| )      /\____) || (___) |
-|/       \_______)(_______)                                      
+ooooooooo.    .oooooo..o   .oooooo.   
+`888   `Y88. d8P'    `Y8  d8P'  `Y8b  
+ 888   .d88' Y88bo.      888      888 
+ 888ooo88P'   `"Y8888o.  888      888 
+ 888              `"Y88b 888      888 
+ 888         oo     .d8P `88b    d88' 
+o888o        8""88888P'   `Y8bood8P'  
 '''
 print(intro)
 decision = input("Rastrigin (1) or Eggholder (2) ? ")
