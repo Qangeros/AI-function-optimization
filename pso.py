@@ -30,7 +30,7 @@ def function(x):
     elif decision == "2":
         filename = f"{now_formated} - PSO - Eggholder"
         plt.title(filename)
-        return f.eggholder1(x)
+        return f.eggholder(x)
 
 
 print("\nSkip for a default value!")
@@ -185,5 +185,5 @@ plt.plot(A, 'o:r')
 plt.xlabel("Generation")
 plt.ylabel("Fitness")
 plt.grid()
-plt.savefig(f"charts/{now_formated}.png")
+plt.savefig(f"charts/{now_formated} - PSO.png")
 plt.show()
