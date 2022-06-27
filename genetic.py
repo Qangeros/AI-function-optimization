@@ -43,6 +43,8 @@ elif decision == "2":
     plt.title(filename)
     varbound = np.array([[-512, 512]] * 2)
 
+
+print("\nSkip for a default value!")
 num_of_iterations = input("Number of iterations (def. 100): ")
 if num_of_iterations == "":
     num_of_iterations = 100
