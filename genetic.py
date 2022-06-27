@@ -43,6 +43,11 @@ elif decision == "2":
     plt.title(filename)
     varbound = np.array([[-512, 512]] * 2)
 
+minimization = input("Minimization (-1) or Maximization (1) ? ")
+if minimization == "-1" or minimization == "":
+    minimization = True
+elif minimization == "2":
+    minimization = False
 
 print("\nSkip for a default value!")
 num_of_iterations = input("Number of iterations (def. 100): ")
@@ -92,11 +97,17 @@ algorithm_param = {'max_num_iteration': num_of_iterations,
                    'max_iteration_without_improv': None}
 
 if decision == "1":
-    model = ga(function=f.rastrigin, dimension=2, variable_type='real', variable_boundaries=varbound,
-               algorithm_parameters=algorithm_param, convergence_curve=False, progress_bar=False)
+    model = ga(function=f.rastrigin, dimension=2, variable_type='real',
+               variable_boundaries=varbound,
+               algorithm_parameters=algorithm_param,
+               convergence_curve=False, progress_bar=False,
+               minimization=minimization)
 elif decision == "2":
-    model = ga(function=f.eggholder, dimension=2, variable_type='real', variable_boundaries=varbound,
-               algorithm_parameters=algorithm_param, convergence_curve=False, progress_bar=False)
+    model = ga(function=f.eggholder, dimension=2, variable_type='real',
+               variable_boundaries=varbound,
+               algorithm_parameters=algorithm_param,
+               convergence_curve=False, progress_bar=False,
+               minimization=minimization)
 model.run()
 
 re = np.array(model.report)
