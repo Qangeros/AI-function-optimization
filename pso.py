@@ -20,7 +20,6 @@ print(intro)
 decision = input("Rastrigin (1) or Eggholder (2) ? ")
 
 
-# definition of a function to be optimized
 def function(x):
     if decision == "1":
         filename = f"{now_formated} - PSO - Rastrigin"
@@ -43,7 +42,7 @@ else:
     x_bound = float(bound)
 y_bound = -x_bound
 
-bounds = [(y_bound, x_bound), (y_bound, x_bound)]  # bound of variables
+bounds = [(y_bound, x_bound), (y_bound, x_bound)]
 num_of_variables = 2
 
 mm = input("Minimalisation (-1) or maximalisation (1) (def. min.): ")
@@ -57,10 +56,9 @@ elif mm == "1":
 
 else:
     print("Wrong value, default chosen (min.).")
-    nm = int(-1)  # mm = 1 for maximalisation, mm = -1 for minimalisation
+    nm = int(-1)
     initial_fitness = np.inf
 
-# optional variables for the optimization
 
 num_of_particles = input("Number of particles (def. 30): ")
 if num_of_particles == "":
@@ -76,19 +74,19 @@ else:
 
 w = input("Inertia constant W (def. 0.5): ")
 if w == "":
-    w = float(0.5)  # inertia constant
+    w = float(0.5)
 else:
     w = float(w)
 
 c1 = input("Cognitive constant C1 (def. 1.5): ")
 if c1 == "":
-    c1 = float(1.5)  # cognitive constant
+    c1 = float(1.5)
 else:
     c1 = float(c1)
 
 c2 = input("Social constant C2 (def. 1.5): ")
 if c2 == "":
-    c2 = float(1.5)  # social constant
+    c2 = float(1.5)
 else:
     c2 = float(c2)
 
@@ -99,15 +97,15 @@ else:
 class Particle:
     def __init__(self, bounds):
         self.fitness = None
-        self.position = []  # position of the particle
-        self.velocity = []  # velocity of the particle
-        self.local_best_position = []  # best position of the particle
+        self.position = []
+        self.velocity = []
+        self.local_best_position = []
         self.local_best_fitness = initial_fitness
 
         # initialise position and velocity of the particle
         for i in range(num_of_variables):
-            self.position.append(rand.uniform(bounds[i][0], bounds[i][1]))  # random initial position
-            self.velocity.append(rand.uniform(bounds[i][0], bounds[i][1]))  # random initial velocity TU MOZE INACZEJ
+            self.position.append(rand.uniform(bounds[i][0], bounds[i][1]))
+            self.velocity.append(rand.uniform(bounds[i][0], bounds[i][1]))
 
     def evaluate(self, function):
         self.fitness = function(self.position)
@@ -173,8 +171,6 @@ for i in range(num_of_generations):
         print("\nGeneration: ", i + 1)
         print("Best fitness: ", global_best_fitness)
         print("Best position: ", global_best_position)
-        # print("Fitness diff: ", A[i] - A[i - 1])
-        # Probably to delete later
 
 print("\n#############################################")
 print("Generation: ", i + 1)
