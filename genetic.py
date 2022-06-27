@@ -34,8 +34,12 @@ print(intro)
 decision = input("Rastrigin (1) or Eggholder (2) ? ")
 
 if decision == "1":
+    filename = f"{now_formated} - Genetic - Rastrigin"
+    plt.title(filename)
     varbound = np.array([[-5.12, 5.12]] * 2)
 elif decision == "2":
+    filename = f"{now_formated} - Genetic - Eggholder"
+    plt.title(filename)
     varbound = np.array([[-512, 512]] * 2)
 
 algorithm_param = {'max_num_iteration': 100,
@@ -51,7 +55,7 @@ if decision == "1":
     model = ga(function=f.rastrigin, dimension=2, variable_type='real', variable_boundaries=varbound,
                algorithm_parameters=algorithm_param, convergence_curve=False)
 elif decision == "2":
-    model = ga(function=f.eggholder1, dimension=2, variable_type='real', variable_boundaries=varbound,
+    model = ga(function=f.eggholder, dimension=2, variable_type='real', variable_boundaries=varbound,
                algorithm_parameters=algorithm_param, convergence_curve=False)
 model.run()
 
