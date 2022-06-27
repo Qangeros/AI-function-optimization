@@ -26,6 +26,6 @@ o888o           `YbodP'    o8o        `8   `Y8bood8P'      o888o     o888o  `Y8b
 
     a = input("Chose algorihtm(G - Genetic, P - PSO): ")
     if a == "G" or a == "g":
-        exec(open('ga_test.py').read())
+        exec(open('genetic.py').read())
     if a == "P" or a == "p":
         exec(open('pso.py').read())
