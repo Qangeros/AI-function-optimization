@@ -173,7 +173,7 @@ for i in range(num_of_generations):
         print("\nGeneration: ", i + 1)
         print("Best fitness: ", global_best_fitness)
         print("Best position: ", global_best_position)
-        print("Fitness diff: ", A[i] - A[i - 1])
+        # print("Fitness diff: ", A[i] - A[i - 1])
         # Probably to delete later
 
 print("\n#############################################")
@@ -185,5 +185,8 @@ plt.plot(A, 'o:r')
 plt.xlabel("Generation")
 plt.ylabel("Fitness")
 plt.grid()
-plt.savefig(f"charts/{now_formated} - PSO.png")
+if decision == "1":
+    plt.savefig(f"charts/{now_formated} - PSO - Rastrigin.png")
+elif decision == "2":
+    plt.savefig(f"charts/{now_formated} - PSO - Eggholder.png")
 plt.show()
