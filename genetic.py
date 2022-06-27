@@ -43,13 +43,15 @@ elif decision == "2":
     plt.title(filename)
     varbound = np.array([[-512, 512]] * 2)
 
-minimization = input("Minimization (-1) or Maximization (1) ? ")
+print("\nSkip for a default value!")
+
+minimization = input("Minimization (-1) (def.) or Maximization (1) ? ")
 if minimization == "-1" or minimization == "":
     minimization = True
-elif minimization == "2":
+elif minimization == "1":
     minimization = False
 
-print("\nSkip for a default value!")
+
 num_of_iterations = input("Number of iterations (def. 100): ")
 if num_of_iterations == "":
     num_of_iterations = 100
