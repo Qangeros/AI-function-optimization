@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def eggholder(X):
     x = X[0]
     y = X[1]
