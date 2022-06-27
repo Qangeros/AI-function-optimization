@@ -45,7 +45,7 @@ elif decision == "2":
 
 print("\nSkip for a default value!")
 
-minimization = input("Minimization (-1) (def.) or Maximization (1) ? ")
+minimization = input("Minimisation (-1) or maximisation (1) (def. min.): ")
 if minimization == "-1" or minimization == "":
     minimization = True
 elif minimization == "1":

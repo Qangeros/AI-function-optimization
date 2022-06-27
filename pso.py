@@ -45,7 +45,7 @@ y_bound = -x_bound
 bounds = [(y_bound, x_bound), (y_bound, x_bound)]
 num_of_variables = 2
 
-mm = input("Minimalisation (-1) or maximalisation (1) (def. min.): ")
+mm = input("Minimisation (-1) or maximisation (1) (def. min.): ")
 if mm == "-1" or mm == "":
     mm = int(-1)
     initial_fitness = np.inf
